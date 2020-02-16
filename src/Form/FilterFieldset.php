@@ -2,7 +2,7 @@
 
 /*
  * Copyright BibLibre, 2016
- * Copyright Daniel Berthereau 2018-2019
+ * Copyright Daniel Berthereau 2018-2020
  *
  * This software is governed by the CeCILL license under French law and abiding
  * by the rules of distribution of free software.  You can use, modify and/ or
@@ -42,23 +42,45 @@ class FilterFieldset extends Fieldset
             return;
         }
 
-        $this->setAttributes([
-            'class' => 'filter',
-        ]);
+        $this
+            ->setAttributes([
+                'class' => 'filter',
+            ]);
 
-        // No issue with input filter for select: there are always options.
-        $this->add([
-            'name' => 'field',
-            'type' => Element\Select::class,
-            'options' => [
-                'value_options' => $fieldOptions,
-            ],
-        ]);
+        $searchPage = $this->getOption('search_page');
+        if ($searchPage && @$searchPage->settings()['form']['filter_value_joiner']) {
+            $this
+                ->add([
+                    'name' => 'join',
+                    'type' => Element\Radio::class,
+                    'options' => [
+                        'value_options' => [
+                            'and' => 'and', // @translate
+                            'or' => 'or', // @translate
+                        ],
+                        'label_attributes' => [
+                            'class' => 'search-boolean-label',
+                        ],
+                    ],
+                    'attributes' => [
+                        'value' => 'and',
+                    ],
+                ]);
+        }
 
-        $this->add([
-            'name' => 'value',
-            'type' => Element\Text::class,
-        ]);
+        $this
+            // No issue with input filter for select: there are always options.
+            ->add([
+                'name' => 'field',
+                'type' => Element\Select::class,
+                'options' => [
+                    'value_options' => $fieldOptions,
+                ],
+            ])
+            ->add([
+                'name' => 'value',
+                'type' => Element\Text::class,
+            ]);
     }
 
     protected function getFieldOptions()

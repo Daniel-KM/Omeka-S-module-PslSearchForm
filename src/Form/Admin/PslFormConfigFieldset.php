@@ -110,7 +110,15 @@ class PslFormConfigFieldset extends Fieldset
             ])
             ->add(
                 $this->getLocationsFieldset()
-            );
+            )
+            ->add([
+                'name' => 'filter_value_joiner',
+                'type' => Element\Checkbox::class,
+                'options' => [
+                    'label' => 'Add the joiner ("and" or "or") to the filters', // @translate
+                ],
+            ])
+        ;
     }
 
     protected function getAdvancedFieldsFieldset()
