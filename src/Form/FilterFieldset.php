@@ -47,8 +47,11 @@ class FilterFieldset extends Fieldset
                 'class' => 'filter',
             ]);
 
+        /** @var \Search\Api\Representation\SearchPageRepresentation $searchPage */
         $searchPage = $this->getOption('search_page');
-        if ($searchPage && @$searchPage->settings()['form']['filter_value_joiner']) {
+        $searchPageSettings = $searchPage ? $searchPage->settings() : [];
+
+        if (!empty($searchPageSettings['form']['filter_value_joiner'])) {
             $this
                 ->add([
                     'name' => 'join',
@@ -76,7 +79,35 @@ class FilterFieldset extends Fieldset
                 'options' => [
                     'value_options' => $fieldOptions,
                 ],
-            ])
+            ]);
+
+        if (!empty($searchPageSettings['form']['filter_value_type'])) {
+            $this
+                ->add([
+                    'name' => 'type',
+                    'type' => Element\Radio::class,
+                    'options' => [
+                        'value_options' => [
+                            'eq' => 'is exactly', // @translate
+                            'neq' => 'is not exactly', // @translate
+                            'in' => 'contains', // @translate
+                            'nin' => 'does not contain', // @translate
+                            'res' => 'is resource with ID', // @translate
+                            'nres' => 'is not resource with ID', // @translate
+                            'ex' => 'has any value', // @translate
+                            'nex' => 'has no values', // @translate
+                        ],
+                        'label_attributes' => [
+                            'class' => 'search-type-label',
+                        ],
+                    ],
+                    'attributes' => [
+                        'value' => 'eq',
+                    ],
+                ]);
+        }
+
+        $this
             ->add([
                 'name' => 'value',
                 'type' => Element\Text::class,
