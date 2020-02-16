@@ -52,7 +52,7 @@ class PslFormConfigFieldset extends Fieldset
                     'empty_option' => 'None', // @translate
                 ],
                 'attributes' => [
-                    'required' => true,
+                    'required' => false,
                     'class' => 'chosen-select',
                 ],
             ])
@@ -65,7 +65,7 @@ class PslFormConfigFieldset extends Fieldset
                     'empty_option' => 'None', // @translate
                 ],
                 'attributes' => [
-                    'required' => true,
+                    'required' => false,
                     'class' => 'chosen-select',
                 ],
             ])
@@ -78,7 +78,7 @@ class PslFormConfigFieldset extends Fieldset
                     'empty_option' => 'None', // @translate
                 ],
                 'attributes' => [
-                    'required' => true,
+                    'required' => false,
                     'class' => 'chosen-select',
                 ],
             ])
@@ -91,7 +91,7 @@ class PslFormConfigFieldset extends Fieldset
                     'empty_option' => 'None', // @translate
                 ],
                 'attributes' => [
-                    'required' => true,
+                    'required' => false,
                     'class' => 'chosen-select',
                 ],
             ])
@@ -104,7 +104,7 @@ class PslFormConfigFieldset extends Fieldset
                     'empty_option' => 'None', // @translate
                 ],
                 'attributes' => [
-                    'required' => true,
+                    'required' => false,
                     'class' => 'chosen-select',
                 ],
             ])

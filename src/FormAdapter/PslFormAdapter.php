@@ -59,7 +59,7 @@ class PslFormAdapter implements FormAdapterInterface
     {
         $query = new Query();
 
-        if (isset($formSettings['is_public_field'])) {
+        if (!empty($formSettings['is_public_field'])) {
             $query->addFilter($formSettings['is_public_field'], true);
         }
 
@@ -67,12 +67,11 @@ class PslFormAdapter implements FormAdapterInterface
             $query->setQuery($request['q']);
         }
 
-        if (!empty($request['map']['spatial-coverage'])) {
-            $field = $formSettings['spatial_coverage_field'];
-            $query->addFilter($field, $request['map']['spatial-coverage']);
+        if (!empty($request['map']['spatial-coverage']) && !empty($formSettings['spatial_coverage_field'])) {
+            $query->addFilter($formSettings['spatial_coverage_field'], $request['map']['spatial-coverage']);
         }
 
-        if (isset($formSettings['date_range_field']) &&
+        if (!empty($formSettings['date_range_field']) &&
             (isset($request['date']['from']) || isset($request['date']['to']))
         ) {
             $start = $request['date']['from'];
@@ -82,11 +81,12 @@ class PslFormAdapter implements FormAdapterInterface
             }
         }
 
-        if (isset($formSettings['item_set_id_field'])
+        if (!empty($formSettings['item_set_id_field'])
             && isset($request['itemSet']['ids'])
         ) {
             $query->addFilter($formSettings['item_set_id_field'], $request['itemSet']['ids']);
         }
+
 
         if (isset($request['text']['filters'])) {
             foreach ($request['text']['filters'] as $filter) {
@@ -96,7 +96,7 @@ class PslFormAdapter implements FormAdapterInterface
             }
         }
 
-        if (isset($formSettings['creation_year_field'])
+        if (!empty($formSettings['creation_year_field'])
             && !empty($request['text']['creation-year'])
         ) {
             $query->addFilter($formSettings['creation_year_field'], $request['text']['creation-year']);
