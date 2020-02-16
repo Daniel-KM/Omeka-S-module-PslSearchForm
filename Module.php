@@ -2,6 +2,7 @@
 
 /*
  * Copyright BibLibre, 2016
+ * Copyright Daniel Berthereau 2019-2020
  *
  * This software is governed by the CeCILL license under French law and abiding
  * by the rules of distribution of free software.  You can use, modify and/ or
@@ -30,53 +31,11 @@
 namespace PslSearchForm;
 
 use Omeka\Module\AbstractModule;
-use Zend\EventManager\Event;
-use Zend\EventManager\SharedEventManagerInterface;
 
 class Module extends AbstractModule
 {
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
-    }
-
-    public function attachListeners(SharedEventManagerInterface $sharedEventManager)
-    {
-        // TODO How to attach all public events only?
-        $sharedEventManager->attach(
-            '*',
-            'view.layout',
-            [$this, 'publicViewLayout']
-        );
-    }
-
-    /**
-     * Preload the search form styles and scripts.
-     *
-     * @param Event $event
-     */
-    public function publicViewLayout(Event $event)
-    {
-        $view = $event->getTarget();
-        // Some pages may be neither site nor admin.
-        if (!$view->status()->isSiteRequest()) {
-            return;
-        }
-
-        if (!$view->getHelperPluginManager()->has('searchForm')) {
-            return;
-        }
-
-        $searchMainPage = $view->siteSetting('search_main_page');
-        if (!$searchMainPage) {
-            return;
-        }
-
-        /** @var \Search\Api\Representation\SearchPageRepresentation $searchPage */
-        $searchPage = $view->api()->searchOne('search_pages', ['id' => $searchMainPage])->getContent();
-        if ($searchPage && $searchPage->form() instanceof \PslSearchForm\Form\PslForm) {
-            // No echo: it's just a preload.
-            $view->partial('psl-search-form/psl-search-form-layout');
-        }
     }
 }

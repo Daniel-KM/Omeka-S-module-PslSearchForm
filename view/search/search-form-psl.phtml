@@ -8,11 +8,12 @@ $translate = $this->plugin('translate');
 $formCollection = $this->plugin('formCollection');
 $formElement = $this->plugin('formElement');
 
-$params = $this->params()->fromQuery() ?: [];
-$form->setData($params);
+// Scripts in search-form-psl-headers.phtml are loaded via an event.
 
-// Scripts in psl-search-form-layout.phtml are loaded via an event that loads psl-search-form-external.
-$form->prepare();
+$params = $this->params()->fromQuery() ?: [];
+$form
+    ->setData($params)
+    ->prepare();
 ?>
 
 <?= $this->form()->openTag($form) ?>
