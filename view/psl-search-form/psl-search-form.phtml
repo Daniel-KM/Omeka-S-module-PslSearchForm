@@ -67,7 +67,8 @@ $form->prepare();
         <div id="psl-search-form-text">
             <div>
                 <?php /** @var Zend\Form\Element\Collection $filters */ ?>
-                <?php $textFieldset = $form->get('text') ?>
+                <?php if ($form->has('text')): ?>
+                <?php $textFieldset = $form->get('text'); ?>
                 <?php if ($textFieldset->has('filters')): ?>
                 <?php $filters = $textFieldset->get('filters') ?>
                 <div class="filters">
@@ -79,6 +80,7 @@ $form->prepare();
                 </div>
                 <?php endif; ?>
                 <?= $this->formRow($textFieldset->get('creation-year')) ?>
+                <?php endif; ?>
             </div>
             <button type="button" class="reset-tab" data-tab="text"><?= $translate('Reset') ?></button>
         </div>
