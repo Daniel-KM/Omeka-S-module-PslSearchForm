@@ -30,6 +30,7 @@
 
 namespace PslSearchForm\Form;
 
+use Omeka\Api\Manager;
 use Omeka\Api\Representation\SiteRepresentation;
 use Search\Query;
 use Search\Querier\Exception\QuerierException;
@@ -40,9 +41,16 @@ use Zend\Form\Form;
 class PslForm extends Form
 {
     /**
-     * @var SiteRepresentation
+     * @var Manager
      */
     protected $apiManager;
+
+    /**
+     * @var SiteRepresentation
+     */
+    protected $site;
+
+    protected $formElementManager;
 
     public function init()
     {
@@ -79,6 +87,24 @@ class PslForm extends Form
                 'required' => false,
             ])
         ;
+    }
+
+    /**
+     * @param Manager $apiManager
+     * @return self
+     */
+    public function setApiManager(Manager $apiManager)
+    {
+        $this->apiManager = $apiManager;
+        return $this;
+    }
+
+    /**
+     * @return \Omeka\Api\Manager
+     */
+    public function getApiManager()
+    {
+        return $this->apiManager;
     }
 
     /**
@@ -247,15 +273,17 @@ class PslForm extends Form
     {
         $site = $this->getSite();
         if (empty($site)) {
-            return [];
+            $itemSets = $this->getApiManager()->search('item_sets')->getContent();
+        } else {
+            // The site item sets may be public of private in Omeka 2.0, so it's
+            // not possible currently to use $site->siteItemSets().
+            $itemSets = $this->getApiManager()->search('item_sets', ['site_id' => $site->id()])->getContent();
         }
-        // The site item sets may be public of private in Omeka 2.0, so it's not
-        // possible currently to use $site->siteItemSets().
-        $api = $site->getServiceLocator()->get('Omeka\ApiManager');
-        $itemSets = $api->search('item_sets', ['site_id' => $site->id()])->getContent();
+        // TODO Update for Omeka 2 to avoid to load full resources (title).
         $options = [];
+        /** @var \Omeka\Api\Representation\ItemSetRepresentation[] $itemSets */
         foreach ($itemSets as $itemSet) {
-            $options[$itemSet->id()] = $itemSet->displayTitle();
+            $options[$itemSet->id()] = (string) $itemSet->displayTitle();
         }
         return $options;
     }
@@ -268,7 +296,7 @@ class PslForm extends Form
 
     protected function getForm($name, $options)
     {
-        $formElementManager = $this->getFormElementManager();
-        return $formElementManager->get($name, $options);
+        return $this->getFormElementManager()
+            ->get($name, $options);
     }
 }

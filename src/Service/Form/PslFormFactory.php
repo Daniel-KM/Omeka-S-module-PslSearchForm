@@ -2,6 +2,7 @@
 
 /*
  * Copyright BibLibre, 2016
+ * Copyright Daniel Berthereau, 2018-2020
  *
  * This software is governed by the CeCILL license under French law and abiding
  * by the rules of distribution of free software.  You can use, modify and/ or
@@ -40,6 +41,7 @@ class PslFormFactory implements FactoryInterface
         $currentSite = $services->get('ControllerPluginManager')->get('currentSite');
         $form = new PslForm(null, $options);
         return $form
+            ->setApiManager($services->get('Omeka\ApiManager'))
             ->setSite($currentSite())
             ->setFormElementManager($services->get('FormElementManager'));
     }
