@@ -42,77 +42,75 @@ class PslFormConfigFieldset extends Fieldset
 
         $fieldOptions = $this->getFieldsOptions();
 
-        $this->add([
-            'name' => 'is_public_field',
-            'type' => Element\Select::class,
-            'options' => [
-                'label' => 'Is Public field', // @translate
-                'value_options' => $fieldOptions,
-                'empty_option' => 'None', // @translate
-            ],
-            'attributes' => [
-                'required' => true,
-                'class' => 'chosen-select',
-            ],
-        ]);
-
-        $this->add([
-            'name' => 'date_range_field',
-            'type' => Element\Select::class, // @translate
-            'options' => [
-                'label' => 'Date range field', // @translate
-                'value_options' => $fieldOptions,
-                'empty_option' => 'None', // @translate
-            ],
-            'attributes' => [
-                'required' => true,
-                'class' => 'chosen-select',
-            ],
-        ]);
-
-        $this->add([
-            'name' => 'item_set_id_field',
-            'type' => Element\Select::class,
-            'options' => [
-                'label' => 'Item set id field', // @translate
-                'value_options' => $fieldOptions,
-                'empty_option' => 'None', // @translate
-            ],
-            'attributes' => [
-                'required' => true,
-                'class' => 'chosen-select',
-            ],
-        ]);
-
-        $this->add([
-            'name' => 'creation_year_field',
-            'type' => Element\Select::class,
-            'options' => [
-                'label' => 'Creation year field', // @translate
-                'value_options' => $fieldOptions,
-                'empty_option' => 'None', // @translate
-            ],
-            'attributes' => [
-                'required' => true,
-                'class' => 'chosen-select',
-            ],
-        ]);
-
-        $this->add([
-            'name' => 'spatial_coverage_field',
-            'type' => Element\Select::class,
-            'options' => [
-                'label' => 'Spatial coverage field', // @translate
-                'value_options' => $fieldOptions,
-                'empty_option' => 'None', // @translate
-            ],
-            'attributes' => [
-                'required' => true,
-                'class' => 'chosen-select',
-            ],
-        ]);
-
-        $this->add($this->getLocationsFieldset());
+        $this
+            ->add([
+                'name' => 'is_public_field',
+                'type' => Element\Select::class,
+                'options' => [
+                    'label' => 'Is Public field', // @translate
+                    'value_options' => $fieldOptions,
+                    'empty_option' => 'None', // @translate
+                ],
+                'attributes' => [
+                    'required' => true,
+                    'class' => 'chosen-select',
+                ],
+            ])
+            ->add([
+                'name' => 'date_range_field',
+                'type' => Element\Select::class, // @translate
+                'options' => [
+                    'label' => 'Date range field', // @translate
+                    'value_options' => $fieldOptions,
+                    'empty_option' => 'None', // @translate
+                ],
+                'attributes' => [
+                    'required' => true,
+                    'class' => 'chosen-select',
+                ],
+            ])
+            ->add([
+                'name' => 'item_set_id_field',
+                'type' => Element\Select::class,
+                'options' => [
+                    'label' => 'Item set id field', // @translate
+                    'value_options' => $fieldOptions,
+                    'empty_option' => 'None', // @translate
+                ],
+                'attributes' => [
+                    'required' => true,
+                    'class' => 'chosen-select',
+                ],
+            ])
+            ->add([
+                'name' => 'creation_year_field',
+                'type' => Element\Select::class,
+                'options' => [
+                    'label' => 'Creation year field', // @translate
+                    'value_options' => $fieldOptions,
+                    'empty_option' => 'None', // @translate
+                ],
+                'attributes' => [
+                    'required' => true,
+                    'class' => 'chosen-select',
+                ],
+            ])
+            ->add([
+                'name' => 'spatial_coverage_field',
+                'type' => Element\Select::class,
+                'options' => [
+                    'label' => 'Spatial coverage field', // @translate
+                    'value_options' => $fieldOptions,
+                    'empty_option' => 'None', // @translate
+                ],
+                'attributes' => [
+                    'required' => true,
+                    'class' => 'chosen-select',
+                ],
+            ])
+            ->add(
+                $this->getLocationsFieldset()
+            );
     }
 
     protected function getAdvancedFieldsFieldset()
