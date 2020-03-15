@@ -2,7 +2,7 @@
 
 /*
  * Copyright BibLibre, 2016
- * Copyright Daniel Berthereau 2018-2019
+ * Copyright Daniel Berthereau 2018-2020
  *
  * This software is governed by the CeCILL license under French law and abiding
  * by the rules of distribution of free software.  You can use, modify and/ or
@@ -30,11 +30,13 @@
 
 namespace PslSearchForm\FormAdapter;
 
-use Search\Query;
 use Search\FormAdapter\FormAdapterInterface;
+use Search\FormAdapter\TraitUnrestrictedQuery;
 
 class PslFormAdapter implements FormAdapterInterface
 {
+    use TraitUnrestrictedQuery;
+
     public function getLabel()
     {
         return 'PSL';
@@ -62,15 +64,9 @@ class PslFormAdapter implements FormAdapterInterface
 
     public function toQuery(array $request, array $formSettings)
     {
-        $query = new Query();
-
-        if (!empty($formSettings['is_public_field'])) {
-            $query->addFilter($formSettings['is_public_field'], true);
-        }
-
-        if (isset($request['q'])) {
-            $query->setQuery($request['q']);
-        }
+        // Only fields that are present on the form are used.
+        // But this form has more fields than the standard form.
+        $query = $this->toUnrestrictedQuery($request, $formSettings);
 
         if (!empty($request['map']['spatial-coverage']) && !empty($formSettings['spatial_coverage_field'])) {
             $query->addFilter($formSettings['spatial_coverage_field'], $request['map']['spatial-coverage']);
@@ -83,53 +79,6 @@ class PslFormAdapter implements FormAdapterInterface
             $end = $request['date']['to'];
             if ($start || $end) {
                 $query->addDateRangeFilter($formSettings['date_range_field'], $start, $end);
-            }
-        }
-
-        if (!empty($formSettings['item_set_id_field'])
-            && isset($request['itemSet']['ids'])
-        ) {
-            $query->addFilter($formSettings['item_set_id_field'], $request['itemSet']['ids']);
-        }
-
-        if (isset($request['text']['filters'])) {
-            if (empty($formSettings['filter_value_joiner'])) {
-                if (empty($formSettings['filter_value_type'])) {
-                    foreach ($request['text']['filters'] as $filter) {
-                        if (!empty($filter['value'])) {
-                            $query->addFilter($filter['field'], $filter['value']);
-                        }
-                    }
-                } else {
-                    foreach ($request['text']['filters'] as $filter) {
-                        $type = @$filter['type'] ?: 'in';
-                        if ($type === 'ex' || $type === 'nex') {
-                            $query->addFilterQuery($filter['field'], null, $type);
-                        } elseif (!empty($filter['value'])) {
-                            $query->addFilterQuery($filter['field'], $filter['value'], $type);
-                        }
-                    }
-                }
-            } else {
-                if (empty($formSettings['filter_value_type'])) {
-                    foreach ($request['text']['filters'] as $filter) {
-                        if (!empty($filter['value'])) {
-                            $joiner = @$filter['join'] === 'or' ? 'or' : 'and';
-                            $query->addFilterQuery($filter['field'], $filter['value'], 'in', $joiner);
-                        }
-                    }
-                } else {
-                    foreach ($request['text']['filters'] as $filter) {
-                        $type = @$filter['type'] ?: 'in';
-                        if ($type === 'ex' || $type === 'nex') {
-                            $joiner = @$filter['join'] === 'or' ? 'or' : 'and';
-                            $query->addFilterQuery($filter['field'], null, $type, $joiner);
-                        } elseif (!empty($filter['value'])) {
-                            $joiner = @$filter['join'] === 'or' ? 'or' : 'and';
-                            $query->addFilterQuery($filter['field'], $filter['value'], 'in', $joiner);
-                        }
-                    }
-                }
             }
         }
 
