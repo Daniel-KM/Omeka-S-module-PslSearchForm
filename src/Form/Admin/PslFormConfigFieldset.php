@@ -204,10 +204,11 @@ class PslFormConfigFieldset extends Fieldset
         $fieldset = new Fieldset('locations');
 
         $locations = $this->getLocations();
-        if (!empty($locations)) {
+        if (empty($locations)) {
+            $fieldset->setLabel('Locations (none found)'); // @translate
+        } else {
             $fieldset->setLabel('Locations'); // @translate
-
-            foreach ($this->getLocations() as $location) {
+            foreach ($locations as $location) {
                 $fieldset->add([
                     'name' => $location,
                     'type' => Element\Text::class,
