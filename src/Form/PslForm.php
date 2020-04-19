@@ -37,6 +37,7 @@ use Search\Querier\Exception\QuerierException;
 use Zend\Form\Element;
 use Zend\Form\Fieldset;
 use Zend\Form\Form;
+use Zend\Log\Logger;
 
 class PslForm extends Form
 {
@@ -49,6 +50,11 @@ class PslForm extends Form
      * @var SiteRepresentation
      */
     protected $site;
+
+    /**
+     * @var Logger
+     */
+    protected $logger;
 
     protected $formElementManager;
 
@@ -106,7 +112,6 @@ class PslForm extends Form
         $locationsOut = [];
         try {
             $response = $searchQuerier->query($query);
-
             $facetCounts = $response->getFacetCounts();
             if (isset($facetCounts[$spatialCoverageField])) {
                 foreach ($facetCounts[$spatialCoverageField] as $facetCount) {
@@ -120,7 +125,7 @@ class PslForm extends Form
                 }
             }
         } catch (QuerierException $e) {
-            error_log($e->getMessage());
+            $this->getLogger()->err($e->getMessage());
         }
 
         return $locationsOut;
@@ -283,6 +288,24 @@ class PslForm extends Form
     public function getSite()
     {
         return $this->site;
+    }
+
+    /**
+     * @param Logger $logger
+     * @return self
+     */
+    public function setLogger(Logger $logger)
+    {
+        $this->logger = $logger;
+        return $this;
+    }
+
+    /**
+     * @return Logger
+     */
+    public function getLogger()
+    {
+        return $this->logger;
     }
 
     /**

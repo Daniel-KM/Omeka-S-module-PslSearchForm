@@ -43,6 +43,7 @@ class PslFormFactory implements FactoryInterface
         return $form
             ->setApiManager($services->get('Omeka\ApiManager'))
             ->setSite($currentSite())
+            ->setLogger($services->get('Omeka\Logger'))
             ->setFormElementManager($services->get('FormElementManager'));
     }
 }
