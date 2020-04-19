@@ -58,7 +58,7 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 
     // TODO Make locations dynamic or configurable.
-    var locations = searchLocations;
+    var locations = typeof searchLocations === 'undefined' ? {} : searchLocations;
 
     // TODO Make map dynamic or configurable.
     var map = L.map('psl-search-form-leaflet-map', {
