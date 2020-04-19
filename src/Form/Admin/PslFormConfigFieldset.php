@@ -238,10 +238,11 @@ class PslFormConfigFieldset extends Fieldset
         $locations = [];
         if ($spatialCoverageField) {
             $query = new Query;
+            $query->setQuery('*');
             $query->setResources(['items']);
             $query->addFacetField($spatialCoverageField);
 
-            $response = $searchQuerier->query($query);
+            $response = $searchQuerier->setQuery($query)->query();
 
             $facetCounts = $response->getFacetCounts();
             if (isset($facetCounts[$spatialCoverageField])) {
