@@ -89,57 +89,6 @@ class PslForm extends Form
         ;
     }
 
-    /**
-     * @param Manager $apiManager
-     * @return self
-     */
-    public function setApiManager(Manager $apiManager)
-    {
-        $this->apiManager = $apiManager;
-        return $this;
-    }
-
-    /**
-     * @return \Omeka\Api\Manager
-     */
-    public function getApiManager()
-    {
-        return $this->apiManager;
-    }
-
-    /**
-     * @param SiteRepresentation $site
-     * @return \PslSearchForm\Form\PslForm
-     */
-    public function setSite(SiteRepresentation $site = null)
-    {
-        $this->site = $site;
-        return $this;
-    }
-
-    /**
-     * @return \Omeka\Api\Representation\SiteRepresentation
-     */
-    public function getSite()
-    {
-        return $this->site;
-    }
-
-    /**
-     * @param Object $formElementManager
-     * @return \PslSearchForm\Form\PslForm
-     */
-    public function setFormElementManager($formElementManager)
-    {
-        $this->formElementManager = $formElementManager;
-        return $this;
-    }
-
-    public function getFormElementManager()
-    {
-        return $this->formElementManager;
-    }
-
     public function getLocations()
     {
         $searchPage = $this->getOption('search_page');
@@ -298,5 +247,56 @@ class PslForm extends Form
     {
         return $this->getFormElementManager()
             ->get($name, $options);
+    }
+
+    /**
+     * @param Manager $apiManager
+     * @return self
+     */
+    public function setApiManager(Manager $apiManager)
+    {
+        $this->apiManager = $apiManager;
+        return $this;
+    }
+
+    /**
+     * @return \Omeka\Api\Manager
+     */
+    public function getApiManager()
+    {
+        return $this->apiManager;
+    }
+
+    /**
+     * @param SiteRepresentation $site
+     * @return \PslSearchForm\Form\PslForm
+     */
+    public function setSite(SiteRepresentation $site = null)
+    {
+        $this->site = $site;
+        return $this;
+    }
+
+    /**
+     * @return \Omeka\Api\Representation\SiteRepresentation
+     */
+    public function getSite()
+    {
+        return $this->site;
+    }
+
+    /**
+     * @param Object $formElementManager
+     * @return \PslSearchForm\Form\PslForm
+     */
+    public function setFormElementManager($formElementManager)
+    {
+        $this->formElementManager = $formElementManager;
+        return $this;
+    }
+
+    public function getFormElementManager()
+    {
+        return $this->formElementManager;
     }
 }
