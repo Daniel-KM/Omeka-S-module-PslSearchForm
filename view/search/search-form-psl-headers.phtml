@@ -6,6 +6,9 @@
 // Add headers (css or scripts) to be included for the form.
 // The form itself is managed by search-form-advanced.
 
+// FIXME Bug in admin with module Mapping.
+if ($this->status()->isAdminRequest()) return;
+
 $assetUrl = $this->plugin('assetUrl');
 
 $this->headLink()
