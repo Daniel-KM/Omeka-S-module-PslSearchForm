@@ -2,7 +2,7 @@
 
 /*
  * Copyright BibLibre, 2016
- * Copyright Daniel Berthereau 2018-2019
+ * Copyright Daniel Berthereau 2018-2020
  *
  * This software is governed by the CeCILL license under French law and abiding
  * by the rules of distribution of free software.  You can use, modify and/ or
@@ -60,6 +60,17 @@ class PslForm extends Form
 
     public function init()
     {
+        // Omeka adds a csrf automatically in \Omeka\Form\Initializer\Csrf.
+        // Remove the csrf, because it is useless for a search form and the url
+        // is not copiable (see the default search form that doesn't use it).
+        foreach ($this->getElements() as $element) {
+            $name = $element->getName();
+            if (substr($name, -4) === 'csrf') {
+                $this->remove($name);
+                break;
+            }
+        }
+
         $this
             ->add([
                 'name' => 'q',
