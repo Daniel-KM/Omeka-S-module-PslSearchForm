@@ -111,8 +111,11 @@ class PslForm extends Form
         $searchPage = $this->getOption('search_page');
         $settings = $searchPage->settings();
         $formSettings = $settings['form'];
-        $locations = empty($formSettings['locations']) ? [] : $formSettings['locations'];
+        if (empty($formSettings['spatial_coverage_field']) || empty($formSettings['locations'])) {
+            return [];
+        }
         $spatialCoverageField = $formSettings['spatial_coverage_field'];
+        $locations = $formSettings['locations'];
 
         $searchQuerier = $searchPage->index()->querier();
 
