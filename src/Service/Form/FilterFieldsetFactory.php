@@ -30,7 +30,7 @@
 namespace PslSearchForm\Service\Form;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use PslSearchForm\Form\FilterFieldset;
 
 class FilterFieldsetFactory implements FactoryInterface

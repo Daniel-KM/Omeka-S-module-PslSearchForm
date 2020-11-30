@@ -32,7 +32,7 @@ namespace PslSearchForm\Service\Form;
 
 use PslSearchForm\Form\PslForm;
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class PslFormFactory implements FactoryInterface
 {

@@ -31,8 +31,8 @@
 namespace PslSearchForm\Form\Admin;
 
 use Search\Query;
-use Zend\Form\Element;
-use Zend\Form\Fieldset;
+use Laminas\Form\Element;
+use Laminas\Form\Fieldset;
 
 class PslFormConfigFieldset extends Fieldset
 {

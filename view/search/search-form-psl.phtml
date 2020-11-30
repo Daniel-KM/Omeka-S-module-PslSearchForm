@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \Zend\View\Renderer\PhpRenderer $this
+ * @var \Laminas\View\Renderer\PhpRenderer $this
  * @var \PslSearchForm\Form\PslForm $form
  */
 
@@ -67,7 +67,7 @@ $form
         </div>
         <div id="psl-search-form-text">
             <div>
-                <?php /** @var Zend\Form\Element\Collection $filters */ ?>
+                <?php /** @var Laminas\Form\Element\Collection $filters */ ?>
                 <?php if ($form->has('text')): ?>
                 <?php $textFieldset = $form->get('text'); ?>
                 <?php if ($textFieldset->has('filters')): ?>

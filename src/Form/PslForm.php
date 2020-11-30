@@ -34,10 +34,10 @@ use Omeka\Api\Manager;
 use Omeka\Api\Representation\SiteRepresentation;
 use Search\Query;
 use Search\Querier\Exception\QuerierException;
-use Zend\Form\Element;
-use Zend\Form\Fieldset;
-use Zend\Form\Form;
-use Zend\Log\Logger;
+use Laminas\Form\Element;
+use Laminas\Form\Fieldset;
+use Laminas\Form\Form;
+use Laminas\Log\Logger;
 
 class PslForm extends Form
 {
