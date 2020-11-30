@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * Copyright BibLibre, 2016
@@ -30,13 +30,13 @@
 
 namespace PslSearchForm\Form\Admin;
 
-use Search\Query;
 use Laminas\Form\Element;
 use Laminas\Form\Fieldset;
+use Search\Query;
 
 class PslFormConfigFieldset extends Fieldset
 {
-    public function init()
+    public function init(): void
     {
         $this->add($this->getAdvancedFieldsFieldset());
 
@@ -231,9 +231,8 @@ class PslFormConfigFieldset extends Fieldset
         $searchPage = $this->getOption('search_page');
         $searchQuerier = $searchPage->index()->querier();
         $settings = $searchPage->settings();
-        $spatialCoverageField = isset($settings['form']['spatial_coverage_field'])
-            ? $settings['form']['spatial_coverage_field']
-            : '';
+        $spatialCoverageField = $settings['form']['spatial_coverage_field']
+            ?? '';
 
         $locations = [];
         if ($spatialCoverageField) {
@@ -261,7 +260,7 @@ class PslFormConfigFieldset extends Fieldset
         $settings = $searchPage->settings();
 
         $name = $field['name'];
-        $label = isset($field['label']) ? $field['label'] : null;
+        $label = $field['label'] ?? null;
         if (isset($settings['form']['advanced-fields'][$name])) {
             $fieldSettings = $settings['form']['advanced-fields'][$name];
 

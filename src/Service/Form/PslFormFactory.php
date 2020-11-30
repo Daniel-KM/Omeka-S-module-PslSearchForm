@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * Copyright BibLibre, 2016
@@ -30,9 +30,9 @@
 
 namespace PslSearchForm\Service\Form;
 
-use PslSearchForm\Form\PslForm;
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
+use PslSearchForm\Form\PslForm;
 
 class PslFormFactory implements FactoryInterface
 {

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * Copyright BibLibre, 2016
@@ -31,8 +31,8 @@
 namespace PslSearchForm\Service\Form;
 
 use Interop\Container\ContainerInterface;
-use PslSearchForm\Form\Admin\PslFormConfigFieldset;
 use Laminas\ServiceManager\Factory\FactoryInterface;
+use PslSearchForm\Form\Admin\PslFormConfigFieldset;
 
 class PslFormConfigFieldsetFactory implements FactoryInterface
 {

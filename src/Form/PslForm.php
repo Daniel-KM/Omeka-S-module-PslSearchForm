@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * Copyright BibLibre, 2016
@@ -30,14 +30,14 @@
 
 namespace PslSearchForm\Form;
 
-use Omeka\Api\Manager;
-use Omeka\Api\Representation\SiteRepresentation;
-use Search\Query;
-use Search\Querier\Exception\QuerierException;
 use Laminas\Form\Element;
 use Laminas\Form\Fieldset;
 use Laminas\Form\Form;
 use Laminas\Log\Logger;
+use Omeka\Api\Manager;
+use Omeka\Api\Representation\SiteRepresentation;
+use Search\Querier\Exception\QuerierException;
+use Search\Query;
 
 class PslForm extends Form
 {
@@ -58,7 +58,7 @@ class PslForm extends Form
 
     protected $formElementManager;
 
-    public function init()
+    public function init(): void
     {
         // Omeka adds a csrf automatically in \Omeka\Form\Initializer\Csrf.
         // Remove the csrf, because it is useless for a search form and the url

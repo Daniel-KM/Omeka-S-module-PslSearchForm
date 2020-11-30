@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace PslSearchFormTest\Controller;
 
@@ -9,7 +9,7 @@ abstract class PslSearchFormControllerTestCase extends OmekaControllerTestCase
     protected $searchIndex;
     protected $searchPage;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -49,13 +49,13 @@ abstract class PslSearchFormControllerTestCase extends OmekaControllerTestCase
         $this->searchPage = $searchPage;
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->api()->delete('search_pages', $this->searchPage->id());
         $this->api()->delete('search_indexes', $this->searchIndex->id());
     }
 
-    protected function setupTestSearchAdapter()
+    protected function setupTestSearchAdapter(): void
     {
         $serviceLocator = $this->getApplication()->getServiceManager();
         $adapterManager = $serviceLocator->get('Search\AdapterManager');
@@ -67,7 +67,7 @@ abstract class PslSearchFormControllerTestCase extends OmekaControllerTestCase
         $adapterManager->configure($config);
     }
 
-    protected function resetApplication()
+    protected function resetApplication(): void
     {
         parent::resetApplication();
 
