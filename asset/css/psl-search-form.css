@@ -6,7 +6,7 @@
     display: none;
 }
 
-#psl-search-form-wrapper input[type="submit"],
+#psl-search-form-wrapper input[type=submit],
 #psl-search-form-wrapper button {
     border: 0 none;
 }
@@ -188,7 +188,7 @@ ul.psl-tabs li.psl-tab-submit input {
     display: flex;
 }
 
-#psl-search-form-text .filter input[type="text"] {
+#psl-search-form-text .filter input[type=text] {
     margin-left: 2em;
 }
 
