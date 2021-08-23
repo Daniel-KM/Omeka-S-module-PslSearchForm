@@ -182,8 +182,12 @@ class PslFormConfigFieldset extends Fieldset
     protected function getAvailableFields()
     {
         $searchPage = $this->getOption('search_page');
-        $searchAdapter = $searchPage->index()->adapter();
-        return $searchAdapter->getAvailableFields($searchPage->index());
+        $searchIndex = $searchPage->index();
+        $searchAdapter = $searchIndex->adapter();
+        if (empty($searchAdapter)) {
+            return [];
+        }
+        return $searchAdapter->getAvailableFields($searchIndex);
     }
 
     protected function getFieldsOptions()

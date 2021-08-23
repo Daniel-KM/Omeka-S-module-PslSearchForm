@@ -37,32 +37,32 @@ class PslFormAdapter implements FormAdapterInterface
 {
     use TraitUnrestrictedQuery;
 
-    public function getLabel()
+    public function getLabel(): string
     {
         return 'PSL';
     }
 
-    public function getFormClass()
+    public function getFormClass(): ?string
     {
         return  \PslSearchForm\Form\PslForm::class;
     }
 
-    public function getFormPartialHeaders()
+    public function getFormPartialHeaders(): ?string
     {
         return 'search/search-form-psl-headers';
     }
 
-    public function getFormPartial()
+    public function getFormPartial(): ?string
     {
         return 'search/search-form-psl';
     }
 
-    public function getConfigFormClass()
+    public function getConfigFormClass(): ?string
     {
         return \PslSearchForm\Form\Admin\PslFormConfigFieldset::class;
     }
 
-    public function toQuery(array $request, array $formSettings)
+    public function toQuery(array $request, array $formSettings): \Search\Query
     {
         // Only fields that are present on the form are used.
         // But this form has more fields than the standard form.
