@@ -12,7 +12,7 @@ if ($this->status()->isAdminRequest()) return;
 $assetUrl = $this->plugin('assetUrl');
 
 $this->headLink()
-    ->appendStylesheet($assetUrl('jquery-ui.min.css', 'jQueryUI'))
+    ->appendStylesheet('https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')
     ->appendStylesheet($assetUrl('vendor/leaflet/leaflet.css', 'PslSearchForm'))
     ->appendStylesheet($assetUrl('css/psl-search-form.css', 'PslSearchForm'));
 
@@ -20,4 +20,4 @@ $this->headLink()
 $this->headScript()
     ->prependFile($assetUrl('js/psl-search-form.js', 'PslSearchForm'), 'text/javascript', ['defer' => 'defer'])
     ->prependFile($assetUrl('vendor/leaflet/leaflet.js', 'PslSearchForm'), 'text/javascript', ['defer' => 'defer'])
-    ->prependFile($assetUrl('jquery-ui.min.js', 'jQueryUI'), 'text/javascript', ['defer' => 'defer']);
+    ->prependFile('https://code.jquery.com/ui/1.12.1/jquery-ui.min.js', 'text/javascript', ['defer' => 'defer']);

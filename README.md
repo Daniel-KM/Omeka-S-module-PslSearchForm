@@ -5,10 +5,8 @@ Psl Search Form (module for Omeka S)
 > are available on [GitLab], which seems to respect users and privacy better
 > than the previous repository.__
 
-[Psl Search Form] is a module for [Omeka S] that provides a [Search] form
+[Psl Search Form] is a module for [Omeka S] that provides an [Search] form
 adapter that is specific to PSL needs.
-
-It requires the module [jQueryUI].
 
 
 Installation
@@ -66,7 +64,7 @@ Copyright
 ---------
 
 * Copyright BibLibre, 2016-2017 (see [BibLibre] on Github)
-* Copyright Daniel Berthereau, 2017-2020 (see [Daniel-KM] on GitLab)
+* Copyright Daniel Berthereau, 2017-2021 (see [Daniel-KM] on GitLab)
 
 This module was built first by BibLibre for the first version of the [digital library]
 of [Université PSL] (Paris Sciences & Lettres).
@@ -76,7 +74,6 @@ of [Université PSL] (Paris Sciences & Lettres).
 [Omeka S]: https://omeka.org/s
 [installing a module]: http://dev.omeka.org/docs/s/user-manual/modules/#installing-modules
 [Search]: https://gitlab.com/Daniel-KM/Omeka-S-module-Search
-[jQueryUI]: https://github.com/biblibre/omeka-s-module-jQueryUI
 [module issues]: https://gitlab.com/Daniel-KM/Omeka-S-module-PslSearchForm/-/issues
 [CeCILL v2.1]: https://www.cecill.info/licences/Licence_CeCILL_V2.1-en.html
 [GNU/GPL]: https://www.gnu.org/licenses/gpl-3.0.html
