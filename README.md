@@ -1,11 +1,14 @@
 Psl Search Form (module for Omeka S)
 ====================================
 
+> ***IMPORTANT***: This module is deprecated and has been replaced by the module
+> [Advanced Search] and won’t be updated any more. The upgrade from it is automatic.
+
 > __New versions of this module and support for Omeka S version 3.0 and above
 > are available on [GitLab], which seems to respect users and privacy better
 > than the previous repository.__
 
-[Psl Search Form] is a module for [Omeka S] that provides an [Search] form
+[Psl Search Form] is a module for [Omeka S] that provides a [Search] form
 adapter that is specific to PSL needs.
 
 
@@ -70,6 +73,8 @@ This module was built first by BibLibre for the first version of the [digital li
 of [Université PSL] (Paris Sciences & Lettres).
 
 
+[Advanced Search]: https://gitlab.com/Daniel-KM/Omeka-S-module-AdvancedSearch
+[Search]: https://gitlab.com/Daniel-KM/Omeka-S-module-Search
 [Psl Search Form]: https://gitlab.com/Daniel-KM/Omeka-S-module-PslSearchForm
 [Omeka S]: https://omeka.org/s
 [installing a module]: http://dev.omeka.org/docs/s/user-manual/modules/#installing-modules

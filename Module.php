@@ -2,7 +2,7 @@
 
 /*
  * Copyright BibLibre, 2016
- * Copyright Daniel Berthereau 2019-2020
+ * Copyright Daniel Berthereau 2019-2021
  *
  * This software is governed by the CeCILL license under French law and abiding
  * by the rules of distribution of free software.  You can use, modify and/ or
@@ -30,12 +30,27 @@
 
 namespace PslSearchForm;
 
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use Omeka\Module\AbstractModule;
+use Omeka\Mvc\Controller\Plugin\Messenger;
+use Omeka\Stdlib\Message;
 
 class Module extends AbstractModule
 {
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
+    }
+
+    public function install(ServiceLocatorInterface $serviceLocator)
+    {
+        $messenger = new Messenger();
+        $message = new Message(
+            'This module is deprecated and has been superceded by %sAdvanced Search%s. The upgrade from it is automatic.', // @translate
+            '<a href="https://gitlab.com/Daniel-KM/Omeka-S-module-AdvancedSearch" target="_blank">',
+            '</a>'
+        );
+        $message->escapeHtml(false);
+        $messenger->addWarning($message);
     }
 }
