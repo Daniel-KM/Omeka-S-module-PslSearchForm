@@ -50,7 +50,7 @@ class Module extends AbstractModule
             '<a href="https://gitlab.com/Daniel-KM/Omeka-S-module-AdvancedSearch" target="_blank">',
             '</a>'
         );
-        $message->escapeHtml(false);
+        $message->setEscapeHtml(false);
         $messenger->addWarning($message);
     }
 }
